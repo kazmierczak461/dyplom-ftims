@@ -3,7 +3,15 @@
   "name": "censorify",
   "version": "0.1.1",
   "description": "Censors words out of text",
-  "main": "usage",
+  "main": "censortext",
+  "respository": {
+  	"type": "git",
+  	"url": "https://github.com/kazmierczak461/dyplom-ftims.git"
+  },
+  "keywords": [
+  	"censor",
+  	"words"
+  ]
   "dependencies": {},
   "engines": {
       "node": "*"
