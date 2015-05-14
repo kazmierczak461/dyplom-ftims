@@ -1,40 +1,9 @@
-var fs = require('fs');
-var http = require('http');
-var url = require('url');
-var ROOT_DIR = "html/";
-http.createServer(function (req, res) {
-  var urlObj = url.parse(req.url, true, false);
-  fs.readFile(ROOT_DIR + urlObj.pathname, function (err,data) {
-    if (err) {
-      res.writeHead(404);
-      res.end(JSON.stringify(err));
-      return;
-    }
-    res.writeHead(200);
-    res.end(data);
-  });
-}).listen(8080);
+var connect = require('connect');
+var serveStatic = require('serve-static');
+connect().use(serveStatic(__dirname)).listen(8080);
 
+console.log('SETTINGS');
 console.log('');
 console.log('Started Node server, listening on port: 8080');
-console.log('Path: http://localhost:8080/index.html');
 console.log('---------------------------------------------------------------');
 console.log('');
-
-var options = {
-    hostname: 'localhost',
-    port: '8080',
-    path: '/index.html'
-  };
-function handleResponse(response) {
-  var serverData = '';
-  response.on('data', function (chunk) {
-    serverData += chunk;
-  });
-  response.on('end', function () {
-    //console.log(serverData);
-  });
-}
-http.request(options, function(response){
-  handleResponse(response);
-}).end();
